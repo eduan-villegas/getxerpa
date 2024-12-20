@@ -1,96 +1,110 @@
 # Proyecto de Enriquecimiento de Transacciones
 
-Este proyecto es una prueba técnica para enriquecer transacciones bancarias mediante una API REST utilizando Django y PostgreSQL.
+![Banner del Proyecto](https://via.placeholder.com/1200x300?text=Enriquecimiento+de+Transacciones) <!-- Reemplaza el enlace con una imagen representativa si tienes una. -->
+
+[![Python](https://img.shields.io/badge/Python-3.9%2B-blue)](https://www.python.org/) [![Django](https://img.shields.io/badge/Django-4.0%2B-green)](https://www.djangoproject.com/) [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-14%2B-blue)](https://www.postgresql.org/) [![Docker](https://img.shields.io/badge/Docker-20.10%2B-blue)](https://www.docker.com/)
+
+Este proyecto es una prueba técnica para enriquecer transacciones bancarias mediante una API REST utilizando **Django** y **PostgreSQL**.
+
+---
 
 ## Tabla de Contenidos
 
-1. [Descripción](#descripción)
-2. [Tecnologías](#tecnologías)
-3. [Instalación](#instalación)
-4. [Uso](#uso)
-5. [Endpoints](#endpoints)
-6. [Uso del Admin de Django](#uso-del-admin-de-django)
+1. [Descripción](#1-descripción)
+2. [Tecnologías](#2-tecnologías)
+3. [Instalación](#3-instalación)
+   - [Requisitos Previos](#31-requisitos-previos)
+   - [Clonar el Repositorio](#32-clonar-el-repositorio)
+   - [Construir y Ejecutar la Aplicación](#33-construir-y-ejecutar-la-aplicación)
+   - [Migrar la Base de Datos](#34-migrar-la-base-de-datos)
+4. [Uso](#4-uso)
+   - [Endpoints Principales](#41-endpoints-principales)
+   - [Uso del Admin de Django](#42-uso-del-admin-de-django)
+5. [Contribuciones](#5-contribuciones)
 
-## Descripción
+---
+
+## 1. Descripción
 
 La API permite enriquecer transacciones bancarias con información sobre categorías, nombres de comercios y logotipos, utilizando un sistema de keywords. Los usuarios pueden enviar un listado de transacciones y recibir datos enriquecidos.
 
-## Tecnologías
+---
 
-- **Django**: Framework web para Python.
-- **Django REST Framework**: Para la creación de APIs RESTful.
-- **PostgreSQL**: Sistema de gestión de bases de datos.
-- **Docker**: Contenerización de la aplicación.
-- **Docker Compose**: Orquestación de contenedores.
+## 2. Tecnologías
 
-## Instalación
+Este proyecto utiliza las siguientes herramientas y tecnologías:
 
-### Requisitos Previos
+- **[Django](https://www.djangoproject.com/):** Framework web para Python.
+- **[Django REST Framework](https://www.django-rest-framework.org/):** Creación de APIs RESTful.
+- **[PostgreSQL](https://www.postgresql.org/):** Sistema de gestión de bases de datos.
+- **[Docker](https://www.docker.com/):** Contenerización de la aplicación.
+- **[Docker Compose](https://docs.docker.com/compose/):** Orquestación de contenedores.
 
-- Tener [Docker](https://www.docker.com/get-started) y [Docker Compose](https://docs.docker.com/compose/) instalados en tu máquina.
+---
 
-### Clonar el Repositorio
+## 3. Instalación
 
-git clone <URL_DEL_REPOSITORIO>
-cd <NOMBRE_DEL_DIRECTORIO>
+### 3.1 Requisitos Previos
 
-### Construir y Ejecutar la Aplicación
+- Tener [Docker](https://www.docker.com/get-started) y [Docker Compose](https://docs.docker.com/compose/) instalados.
 
+### 3.2 Clonar el Repositorio
+
+```bash
+git clone https://github.com/eduan-villegas/getxerpa.git
+cd getxerpa
+```
+
+### 3.3 Construir y Ejecutar la Aplicación
+
+```bash
 docker-compose up --build
+```
 
-### Migrar la Base de Datos
+### 3.4 Migrar la Base de Datos
+
 En otro terminal, ejecuta:
 
+```bash
 docker-compose exec web python manage.py migrate
+```
 
-### Uso
-Una vez que la aplicación esté en funcionamiento, puedes acceder a la API en:
+---
 
-http://127.0.0.1:8000/api/
+## 4. Uso
 
-### Endpoints
-A continuación se describen los principales endpoints disponibles:
+### 4.1 Endpoints Principales
 
-Transacciones
-GET /api/transacciones/: Listar todas las transacciones.
-POST /api/transacciones/: Enviar un listado de transacciones para enriquecer.
-GET /api/transacciones/{id}/: Obtener detalles de una transacción específica.
-PUT /api/transacciones/{id}/: Actualizar una transacción específica.
-DELETE /api/transacciones/{id}/: Eliminar una transacción específica.
+#### Transacciones
+- **GET** `/api/transacciones/`: Listar todas las transacciones.
+- **POST** `/api/transacciones/`: Enviar un listado de transacciones para enriquecer.
+- **GET** `/api/transacciones/{id}/`: Obtener detalles de una transacción específica.
+- **PUT** `/api/transacciones/{id}/`: Actualizar una transacción específica.
+- **DELETE** `/api/transacciones/{id}/`: Eliminar una transacción específica.
 
-Categorías
-GET /api/categorias/: Listar todas las categorías.
-POST /api/categorias/: Crear una nueva categoría.
-GET /api/categorias/{id}/: Obtener detalles de una categoría específica.
-PUT /api/categorias/{id}/: Actualizar una categoría específica.
-DELETE /api/categorias/{id}/: Eliminar una categoría específica.
+#### Categorías
+- **GET** `/api/categorias/`: Listar todas las categorías.
+- **POST** `/api/categorias/`: Crear una nueva categoría.
+- **GET** `/api/categorias/{id}/`: Obtener detalles de una categoría específica.
+- **PUT** `/api/categorias/{id}/`: Actualizar una categoría específica.
+- **DELETE** `/api/categorias/{id}/`: Eliminar una categoría específica.
 
-Comercios
-GET /api/comercios/: Listar todos los comercios.
-POST /api/comercios/: Crear un nuevo comercio.
-GET /api/comercios/{id}/: Obtener detalles de un comercio específico.
-PUT /api/comercios/{id}/: Actualizar un comercio específico.
-DELETE /api/comercios/{id}/: Eliminar un comercio específico.
+### 4.2 Uso del Admin de Django
 
-Keywords
-GET /api/keywords/: Listar todas las keywords.
-POST /api/keywords/: Crear una nueva keyword.
-GET /api/keywords/{id}/: Obtener detalles de una keyword específica.
-PUT /api/keywords/{id}/: Actualizar una keyword específica.
-DELETE /api/keywords/{id}/: Eliminar una keyword específica.
+#### Crear un Superusuario
 
-## Uso del Admin de Django
+Para acceder al panel de administración, necesitas crear un superusuario:
 
-### Crear un superusuario
-Para acceder al panel de administración, necesitas crear un superusuario. Ejecuta el siguiente comando en otra terminal:
-
+```bash
 docker-compose exec web python manage.py createsuperuser
+```
 
-Se te pedirá que ingreses un nombre de usuario, un correo electrónico y una contraseña. Asegúrate de recordar estas credenciales.
+#### Acceso al Panel de Administración
 
-### Acceder al panel de administración
-Una vez creado el superusuario, puedes acceder al panel de administración abriendo tu navegador en:
+Accede a: [http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/) e inicia sesión con las credenciales del superusuario.
 
-http://127.0.0.1:8000/admin/
+---
 
-Inicia sesión con las credenciales del superusuario que creaste.
+## 5. Contribuciones
+
+¡Contribuciones son bienvenidas! Por favor, abre un [issue](https://github.com/eduan-villegas/getxerpa.git/issues) o envía un pull request.
